@@ -18,5 +18,6 @@ urlpatterns = [
     path("winnings", views.winnings, name="winnings"),
     path("cat_list", views.cat_list, name="cat_list"),
     path("categories/<str:category_name>", views.cat, name="cat"),
+    
 ]
 

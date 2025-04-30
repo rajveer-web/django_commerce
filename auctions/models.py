@@ -4,6 +4,10 @@ from django.db import models
 class User(AbstractUser):
     pass
 
+# Category model to store auction categories
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
 class auctionlist(models.Model):
     user = models.CharField(max_length=64)
     title = models.CharField(max_length=64)
@@ -13,13 +17,13 @@ class auctionlist(models.Model):
     category = models.CharField(max_length=64)
     active_bool = models.BooleanField(default = True)
 
-class bids(models.Model):
+class bid(models.Model):
     user = models.CharField(max_length=30)
     listingid = models.IntegerField()
     bid = models.IntegerField()
     
 
-class comments(models.Model):
+class comment(models.Model):
     user = models.CharField(max_length=64)
     comment = models.TextField()
     listingid = models.IntegerField()
