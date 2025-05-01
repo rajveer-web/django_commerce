@@ -1,13 +1,23 @@
 body {
     padding: 10px;
-    text-align: center;
 }
-.message{
-    background-color:  #15317E;
-    color: white;
-    padding: 2vw;
-}      
 
-.nav{
-    margin-top: 2.5vw;
+table {
+    border: 2px solid rgb(183, 179, 179); 
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    margin-top: 20px;
+}
+
+th, td {
+    border: none; 
+    padding: 5px 8px;
+    text-align: left;
+    
+}
+
+td:nth-child(3), th:nth-child(3) {
+    width: 550px; /* Adjust width as needed */
+    word-wrap: break-word;
 }

@@ -25,8 +25,8 @@ class CustomUserAdmin(UserAdmin):
 
 # Register your models here.
 admin.site.register(auctionlist, auction)
-admin.site.register(bid, bidadmin)
-admin.site.register(comment, CommentAdmin)
+admin.site.register(bids, bidadmin)
+admin.site.register(comments, CommentAdmin)
 admin.site.register(watchlist, watchl)
 admin.site.register(winner, win)
 admin.site.register(User, CustomUserAdmin)

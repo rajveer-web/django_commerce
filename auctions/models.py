@@ -17,18 +17,7 @@ class auctionlist(models.Model):
     category = models.CharField(max_length=64)
     active_bool = models.BooleanField(default = True)
 
-class bid(models.Model):
-    user = models.CharField(max_length=30)
-    listingid = models.IntegerField()
-    bid = models.IntegerField()
     
-
-class comment(models.Model):
-    user = models.CharField(max_length=64)
-    comment = models.TextField()
-    listingid = models.IntegerField()
-    
-
 class watchlist(models.Model):
     watch_list = models.ForeignKey(auctionlist, on_delete=models.CASCADE)
     user = models.CharField(max_length=64)
@@ -36,3 +25,14 @@ class watchlist(models.Model):
 class winner(models.Model):
     bid_win_list = models.ForeignKey(auctionlist, on_delete = models.CASCADE)
     user = models.CharField(max_length=64, default = None)
+
+class bids(models.Model):
+    user = models.CharField(max_length=30)
+    listingid = models.IntegerField()
+    bid = models.IntegerField()
+       
+
+class comments(models.Model):
+    user = models.CharField(max_length=64)
+    comment = models.TextField()
+    listingid = models.IntegerField()
