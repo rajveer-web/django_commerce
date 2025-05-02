@@ -3,96 +3,108 @@
 {% block body %}
     <h2>Watch List</h2>
     <div id="activelist">
-    {% for list in user_watchlist %}
-    {% if list.watch_list.active_bool == True %}
-    <div class = "card">
-        <a class="title">{{list.watch_list.title}}</a>
-        <a class= "cat">{{list.watch_list.category}}</a>
-        {% if list.watch_list.image_url %}
-            <img src="{{ list.watch_list.image_url }}" class="list_img">
-        {% else %}
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png" alt="No image Provided" class="list_img">
-        {% endif %}
-        <a><a class="c_price">Current Price: </a> {{ list.watch_list.starting_bid }} $ </a>
-        <a href="{% url 'listingpage' list.watch_list.id %}">View Bid</a>
-        
-        <form action = "{% url 'deletewatchlist' %}">
-        <button type = "submit" value = {{ list.id }} name = "listid" >Delete</button>
-        </form>
-    {% endif %}
-    </div>  
-    {% endfor %}
+        {% for list in user_watchlist %}
+            {% if list.watch_list.active_bool %}
+                <div class="card">
+                    <span class="title">{{ list.watch_list.title }}</span>
+                    <span class="cat">{{ list.watch_list.category }}</span>
+
+                    {% if list.watch_list.image_url %}
+                        <img src="{{ list.watch_list.image_url }}" class="list_img">
+                    {% else %}
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png"
+                             alt="No image Provided" class="list_img">
+                    {% endif %}
+
+                    <span><span class="c_price">Current Price: </span>{{ list.watch_list.starting_bid }} $</span>
+
+                    <a href="{% url 'listingpage' list.watch_list.id %}">View Bid</a>
+
+                    <form action="{% url 'deletewatchlist' %}">
+                        <button type="submit" value="{{ list.id }}" name="listid">Delete</button>
+                    </form>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
-      
+
     <style>
-        
-     
         #activelist {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2vw;
-        width: 90%;
-        margin: 4vw auto 0;
-        font-family: 'Nunito', sans-serif;
-        text-align: center;
-    }
-    .card {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .card img.list_img {
-        width: 70%;
-        max-width: 250px;
-        height: 300px;
-        border-radius: 6px;
-        margin: 10px auto;
-        display: block;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .title {
-        font-size: 1.2em;
-        font-weight: bold;
-        display: block;
-        margin: 10px 0 5px;
-    }
-    
-    .cat {
-        display: block;
-        font-size: 0.95em;
-        color: #666;
-        margin-bottom: 10px;
-    }
-    
-    .c_price {
-        font-weight: bold;
-    }
-    
-    a, .c_price {
-        display: block;
-        margin: 5px 0;
-    }
-    
-    button {
-        width: 100%;
-        padding: 8px;
-        margin-top: 10px;
-        background-color: #dc3545;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    
-    button:hover {
-        background-color: #c82333;
-    }
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 2vw;
+            width: 90%;
+            margin: 4vw auto 0;
+            font-family: 'Nunito', sans-serif;
+            text-align: center;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img.list_img {
+            width: 70%;
+            max-width: 250px;
+            height: 240px;
+            border-radius: 6px;
+            margin: 10px auto;
+            display: block;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 1.2em;
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .cat {
+            display: block;
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .c_price {
+            font-weight: bold;
+        }
+
+        a, .c_price {
+            display: block;
+            margin: 5px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c82333;
+        }
+
+        @media (max-width: 768px) {
+            #activelist {
+                grid-template-columns: repeat(1, 1fr); 
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            #activelist {
+                grid-template-columns: repeat(2, 1fr);  
+            }
+        }
     </style>
-
 {% endblock %}
-
-
