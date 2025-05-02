@@ -6,25 +6,22 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Active Listings</h2>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="message">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
+<h2>Active Listings</h2>
+<br>
+{% if messages %}
+    {% for message in messages %}
+        <div class="message-box">
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 
-    <table id="activelist">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Action</th>
-            </tr>
-        </thead>
+<!-- Loop through listings -->
+{% for list in a1 %}
+    <table class="listing-table">
+        
         <tbody>
-            {% for list in a1 %}
             <tr>
                 <td>{{ list.title }}</td>
                 <td>
@@ -34,11 +31,16 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg" alt="No image" class="listing-image">
                     {% endif %}
                 </td>
-                <td>{{ list.desc }}</td>
-                <td>${{ list.starting_bid }} </td>
+                <td>
+                    {{ list.desc }}
+                    <br><br>
+                    <span class="creation-time">Created at: {{ list.created_at|date:"M d, Y h:i A" }}</span>
+
+                </td>
+                <td>${{ list.starting_bid }}</td>
                 <td><a class="view-btn" href="{% url 'listingpage' list.id %}">View Bid</a></td>
             </tr>
-            {% endfor %}
         </tbody>
     </table>
+{% endfor %}
 {% endblock %}

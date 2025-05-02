@@ -1,60 +1,81 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Your Winnings</h2>
-    <div id="activelist">
+<h2>Your Winnings</h2>
+<div id="activelist">
     {% for list in user_winlist %}
-    <div class = "card">
-        <a class="title">{{list.bid_win_list.title}}</a>
-        <a class= "cat">{{list.bid_win_list.category}}</a>
+    <div class="card">
+        <a class="title">{{ list.bid_win_list.title }}</a>
+        <a class="cat">{{ list.bid_win_list.category }}</a>
+
         {% if list.bid_win_list.image_url %}
-            <img src="{{ list.bid_win_list.image_url }}" class="list_img">
+            <img src="{{ list.bid_win_list.image_url }}" class="list-img">
         {% else %}
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png" alt="No image Provided" class="list_img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png" alt="No image Provided" class="list-img">
         {% endif %}
+
         <p class="desc">{{ list.bid_win_list.desc }}</p>
-        <div>This bid was listed by <a class = "listuser">{{ list.bid_win_list.user }}</a>.</div>
-    </div>  
-    {% endfor %}
+        <div><p style="font-weight: bold;">This bid was listed by <span class="listuser">{{ list.bid_win_list.user }}</span>.</p></div>
     </div>
-      
+    {% endfor %}
+</div>
+
 <style>
-        
-#activelist{
-    margin-top: 4vw;
-    grid-gap: 2vw;
-    display:grid;
+#activelist {
+    margin-top: 2vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
     width: 90%;
-    margin-left: 5%;
-    grid-template-rows: repeat(auto,1fr);
-    grid-template-columns: 1fr 1fr;
-    font-family: 'Nunito', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
     text-align: center;
 }
-.card{
-    display: grid;
-    grid-template-rows: repeat(auto,1fr);
-    grid-template-columns: 1fr;
-    width: 90%;
-    margin-left: 5%;
+
+.card {
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 }
 
-img{
-        width: 100%;
-    }
+.card:hover {
+    transform: translateY(-5px);
+}
 
-.title{
-
-    font-size: 2vw;
+.title {
+    font-size: 1.2em;
     font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
-.listuser{
-    font-weight: bold;
+
+.cat {
+    font-size: 0.9em;
+    color: #555;
+    display: block;
+    margin-bottom: 10px;
 }
-button{
+
+.list-img {
     width: 100%;
+    max-width: 250px;
+    height: 200px;
+    display: block;
+    margin: 0 auto 10px auto;  
+    border-radius: 6px;
 }
+
+.desc {
+    font-size: 0.95em;
+    margin-bottom: 10px;
+}
+
+.listuser {
+    font-weight: bold;
+}
+
 </style>
 {% endblock %}
-
-

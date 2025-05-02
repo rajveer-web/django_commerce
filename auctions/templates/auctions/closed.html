@@ -1,0 +1,8 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+  <div class="alert alert-warning text-center mt-4">
+    <h3>{{ message }}</h3>
+    <a href="{% url 'index' %}" class="btn btn-primary mt-3">Back to Listings</a>
+  </div>
+{% endblock %}

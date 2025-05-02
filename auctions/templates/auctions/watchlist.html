@@ -24,43 +24,75 @@
     {% endfor %}
     </div>
       
-<style>
+    <style>
         
-#activelist{
-    margin-top: 4vw;
-    grid-gap: 2vw;
-    display:grid;
-    width: 90%;
-    margin-left: 5%;
-    grid-template-rows: repeat(auto,1fr);
-    grid-template-columns: 1fr 1fr 1fr;
-    font-family: 'Nunito', sans-serif;
-    text-align: center;
-}
-.card{
-    display: grid;
-    grid-template-rows: repeat(auto,1fr);
-    grid-template-columns: 1fr;
-    width: 90%;
-    margin-left: 5%;
-}
-
-img{
-        width: 100%;
+     
+        #activelist {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2vw;
+        width: 90%;
+        margin: 4vw auto 0;
+        font-family: 'Nunito', sans-serif;
+        text-align: center;
     }
+    .card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card img.list_img {
+        width: 70%;
+        max-width: 250px;
+        height: 300px;
+        border-radius: 6px;
+        margin: 10px auto;
+        display: block;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .title {
+        font-size: 1.2em;
+        font-weight: bold;
+        display: block;
+        margin: 10px 0 5px;
+    }
+    
+    .cat {
+        display: block;
+        font-size: 0.95em;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    
+    .c_price {
+        font-weight: bold;
+    }
+    
+    a, .c_price {
+        display: block;
+        margin: 5px 0;
+    }
+    
+    button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 10px;
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #c82333;
+    }
+    </style>
 
-.title{
-
-    font-size: 2vw;
-    font-weight: bold;
-}
-.c_price{
-    font-weight: bold;
-}
-button{
-    width: 100%;
-}
-</style>
 {% endblock %}
 
 

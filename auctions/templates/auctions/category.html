@@ -2,53 +2,48 @@
 
 {% block body %}
     <h2>All Categories</h2>
-    <div id="activelist">
-    {% for list in cat_list %}
-    <div class = "card">
-        <a class="title bg-light" href={% url 'cat' list.category %}>{{list.category}}</a>
-    </div>  
-    {% endfor %}
-    </div>
-      
-<style>
-        
-#activelist{
-
-    margin-top: 4vw;
-    grid-gap: 2vw;
-    display:grid;
-    width: 40%;
-    margin-left: 30%;
-    grid-template-rows: repeat(auto,1fr);
-    grid-template-columns: 1fr;
-    font-family: 'Nunito', sans-serif;
-    text-align: center;
-}
-.card{
+    <ul class="category-list">
+        {% for list in cat_list %}
+            <li class="category-item">
+                <a class="category-link" href="{% url 'cat' list.category %}">
+                    {{ list.category }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <style>
+.category-list {
+    list-style: none;
     display: grid;
-    grid-template-rows: repeat(auto,1fr);
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 0;
+    margin: 30px auto;
     width: 90%;
-    margin-left: 5%;
-    background-color: grey;
 }
 
-img{
-        width: 100%;
-    }
-
-.title{
-
-    font-size: 2vw;
-    color:black;
+.category-item {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.listuser{
+
+.category-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.category-link {
+    text-decoration: none;
+    color: #007bff;
     font-weight: bold;
+    font-size: 1.1em;
+    display: block;
 }
-button{
-    width: 100%;
-}
-</style>
+
+
+    </style>
 {% endblock %}
-
-

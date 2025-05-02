@@ -84,14 +84,26 @@ def create(request):
 
 
 def listingpage(request, bidid):
-    biddesc = auctionlist.objects.get(pk = bidid, active_bool = True)
-    bids_present = bids.objects.filter(listingid = bidid)
+    try:
+        biddesc = auctionlist.objects.get(pk=bidid)
+    except auctionlist.DoesNotExist:
+        return render(request, "auctions/closed.html", {
+            "message": "This auction does not exist."
+        })
 
-    return render(request, "auctions/listingpage.html",{
+    if not biddesc.active_bool:
+        return render(request, "auctions/closed.html", {
+            "message": f"The auction '{biddesc.title}' has been closed."
+        })
+
+    bids_present = bids.objects.filter(listingid=bidid)
+
+    return render(request, "auctions/listingpage.html", {
         "list": biddesc,
-        "comments" : comments.objects.filter(listingid = bidid),
+        "comments": comments.objects.filter(listingid=bidid),
         "present_bid": minbid(biddesc.starting_bid, bids_present),
     })
+
 
 
 @login_required(login_url='login')

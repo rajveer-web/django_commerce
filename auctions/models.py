@@ -16,6 +16,7 @@ class auctionlist(models.Model):
     image_url = models.CharField(max_length=228, default = None, blank = True, null = True)
     category = models.CharField(max_length=64)
     active_bool = models.BooleanField(default = True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     
 class watchlist(models.Model):
